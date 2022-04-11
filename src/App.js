@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const initCards = [
   { id: 1, order: 1, text: "1" },
@@ -9,41 +9,89 @@ const initCards = [
   { id: 4, order: 4, text: "4" },
 ];
 
+
+const App = () => {
+  
+
+  const [cards, setCards] = useState(initCards);
+
+  const [currentCard, setCurrentCard] = useState(null);
+
+  // useEffect( () => console.log('UseEffect'), [cards])
+
 const onDragStart = (e, card) => {
-  console.log('onDragStart')
+ 
+  setCurrentCard(card)
 }
 
-const onDragEnd = (e, card) => {
-  console.log('onDragEnd')
+const onDragEnd = (e) => {
+  e.target.style.background = 'white'
+ 
+ 
 }
 
-const onDragLeave = (e, card) => {
-  console.log('onDragLeave')
+const onDragLeave = (e) => {
+
+  e.target.style.background = 'white'
+ 
 }
 
 const onDrop = (e, card) => {
-  console.log('onDrop')
-}
+   
+  e.target.style.background = 'white'
+  setCards(cards => cards.map( (c) => {
+    if (c.id === card.id) {
+      return {...c, order: currentCard.order}
+    } 
 
-const onDragOver = (e, card) => {
-  console.log('onDragOver')
-}
+    if (c.id === currentCard.id) {
+      return {...c, order: card.order}
+    }
 
-function App() {
-  const [cards, setCards] = useState(initCards);
+    return c
+  }))
   
+}
+
+const onDragOver = (e) => {
+  e.preventDefault()
+
+  e.target.style.background = 'lightgray'
+ 
+  }
+
+const SortCards = (a, b) => {
+  if (a.order > b.order) {
+    return 1 
+  } else if (a < b) {
+    return -1
+  }
+  return 0
+  }
+
+  useEffect(() => {
+    setCards(cards => cards.sort(SortCards));
+    console.log(cards)
+  }, [cards]);
+
   return (
+   
     <div className="App">
       <div className="cardContainer">
-        {cards.map((c) => {
+        { 
+        cards.sort(SortCards).map((c) => {
+          
           return <div key={c.id} className="cardItem" draggable="true" 
-          onDragStart={onDragStart}
-          onDragEnd={onDragEnd}
-          onDragOver={onDragOver}
-          onDragLeave={onDragLeave}
-          onDrop={onDrop}
+          onDragStart={(e) => onDragStart(e, c)}
+          onDragEnd={(e) => onDragEnd(e)}
+          onDragOver={(e) => onDragOver(e)}
+          onDragLeave={(e) => onDragLeave(e)}
+          onDrop={(e) => onDrop(e,c)}
+          
           >{c.text}</div>;
-        })}
+         
+        }
+        )}
       </div>
     </div>
   );
