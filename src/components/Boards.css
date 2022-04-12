@@ -1,0 +1,28 @@
+.boardContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 350px;
+    gap: 20px;
+    justify-content: center;
+    
+
+}
+
+.board {
+display: flex;
+flex-direction: column;
+border: 1px solid;
+justify-content: center;
+align-items: center;
+}
+
+.item {
+    margin: 15px;
+    border: 1px solid;
+    width: 300px;
+    height: 250px
+    
+  
+    
+
+}

@@ -1,0 +1,26 @@
+.cardContainer {
+  padding: 10px;
+  display: grid;
+  width: 500px;
+  gap: 15px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 200px;
+  border: 1px solid;
+  
+  text-align: center;
+  
+  
+}
+
+.cardItem {
+  border: 1px solid coral; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  
+  /* width: 150px; */
+  /* align-self: center; */
+
+  font-weight: bold;
+}
