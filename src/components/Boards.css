@@ -8,20 +8,28 @@
 
 }
 
-.board {
+.boardItem {
+    border: 2px solid rgb(170, 61, 61);
+    display:grid;
+    /* justify-content: center; */
+align-items: center;
+   
+}
+
+/* .board {
 display: flex;
 flex-direction: column;
 border: 1px solid;
 justify-content: center;
 align-items: center;
-}
+} */
 
 .item {
     margin: 15px;
     border: 1px solid;
-    width: 300px;
+    /* width: 300px;
     height: 250px
-    
+     */
   
     
 
