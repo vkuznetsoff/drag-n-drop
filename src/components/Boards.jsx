@@ -36,24 +36,11 @@ const Boards = () => {
   const [currentItem, setCurrentItem] = useState(null);
 
   const onDragStart = (e, board, item) => {
-    setCurrentBoard(board);
-    setCurrentItem(item);
-    // setTimeout(() => {
-    //   console.log(currentBoard, currentItem)
-    // }, 1500);
+    setCurrentBoard(board)
+    setCurrentItem(item)
   };
 
 
-  const onBoardDragOver = (e, board) => {
-    e.preventDefault();
-    
-    if (e.target.className == "boardItem" && board.items.length == 0) {
-      console.log('!')
-      e.target.style.backgroundColor = 'gray';
-    }
-   
-    
-  };
 
   const onDragOver = (e, board) => {
     e.preventDefault();
@@ -68,7 +55,7 @@ const Boards = () => {
   };
 
   const onDragEnd = (e) => {
-    e.target.style.boxShadow = "none";
+    e.target.style.boxShadow = "none" 
   };
 
   const onDrop = (e, board, item) => {
@@ -92,19 +79,22 @@ const Boards = () => {
         return b
       })
     );
+    
     // setTimeout(() => {
     //   console.log(boards);
     // }, 1500);
+   
   };
 
+  
+  
   return (
     <div>
       <div className="boardContainer" >
         {boards.map((board) => {
           return (
-            <div className="boardItem" draggable="true"
-            onDragOver = { (e) => onBoardDragOver(e, board)}>
-              <div>Доска</div>
+            <div className="boardItem" >
+              <h1 className="boardTitle">Доска</h1>
               {board.items.map((item) => {
                 return (
                   <div
