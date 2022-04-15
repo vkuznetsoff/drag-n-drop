@@ -2,10 +2,10 @@ import { Box } from "@chakra-ui/react"
 import { useDrop } from "react-dnd"
 import ItemTypes from "../../utils/itemTypes"
 
-const BoxTarget = () => {
+const BoxTarget = ({onDrop}) => {
     const [{isOver}, drop] = useDrop({
         accept: ItemTypes.CARD,
-        drop: (item) => console.log(item),
+        drop: (item) => onDrop(item.id),
         collect: monitor => ({
             isOver: !!monitor.isOver()
         })
