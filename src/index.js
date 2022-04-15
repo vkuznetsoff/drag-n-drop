@@ -1,15 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createRoot} from "react-dom/client"
-import Card from './Card';
+import { createRoot } from "react-dom/client"
+import { ChakraProvider } from '@chakra-ui/react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-root.render( <React.StrictMode>
-  <App />
+root.render(<React.StrictMode>
+  <ChakraProvider>
+    <DndProvider backend={HTML5Backend}>
+      <App />
+    </DndProvider>
+
+  </ChakraProvider>
+
 </React.StrictMode>);
 
 // ReactDOM.render(
